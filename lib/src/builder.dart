@@ -512,7 +512,8 @@ class MarkdownBuilder implements md.NodeVisitor {
 
   void _addBlockChild(Widget child) {
     final _BlockElement parent = _blocks.last;
-    if (parent.children.isNotEmpty) {
+    final bool hasParent = parent.tag != null;
+    if (parent.children.isNotEmpty && !hasParent) {
       parent.children.add(SizedBox(height: styleSheet.blockSpacing));
     }
     parent.children.add(child);
